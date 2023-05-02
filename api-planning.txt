@@ -1,0 +1,89 @@
+standar api
+
+{root.api}/{version}/{grouping}/{endpoint}
+
+Standar Status Response
+
+200 - OK --> call api success
+201 - CREATED -->Post success
+400 - BAD REQUEST -->Error on client side
+401 - UNATHORIZED --> user not authorized 
+403 - FORBIDDEN --> user not allowed to access
+404 - NOT FOUND --> request endpoint not found
+500 - INTERNAL SERVER ERROR --> error on server side
+502 - BAD GATEWAY --> invalid response from another request
+
+=========================================================================
+GROUP: Auth
+
+[1] - Register
+[POST] : {root.api}/{version}/auth/Register
+
+req:
+{
+    "name": "blabla",
+    "email": "asdf@mail.com",
+    "password": "123123"
+}
+
+res:
+{
+    "message": "Register success",
+    "data":{
+        "id": 1,
+        "name": "blabla",
+        "email": "asdf@mail.com",
+        "password": "123123"
+    }
+}
+
+err-response:
+201 -> register berhasil
+400 -> input yg anda masukkan tidak valid
+
+[2] - Login
+{root.api}/{version}/auth/login
+
+req:
+{
+    "email": "asdf@mail.com",
+    password": "123123"
+}
+
+==================================================================================
+
+GROUP: BLOG
+
+[1] - Create blog Post
+[POST] : {root.api}/{version}/blog/Post
+
+req:
+{
+    "title": "Title Blog",
+    "image": "image.png",
+    "body": "asdfghjklzxcvbnm"
+}
+
+res:
+{
+    "message" : "Create Blog Post Success",
+    "data": {
+        "post_id": 1,
+        "title": "title",
+        "image": "image.png",
+        "body": "asdfghjkl",
+        "created_at": "30/03/2022",
+        "author": {
+            "uid": 1,
+            "name": "riku"
+        }
+    }
+}
+
+err-response:
+201 -> blog post berhasil dibuat 
+400 -> input yg anda masukkan tidak valid
+
+[2] - Get blog Post
+[3] - Update blog Post
+[4] - Delete blog Post
